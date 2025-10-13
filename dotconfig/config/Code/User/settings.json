@@ -1,0 +1,13 @@
+{
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "editor.fontFamily": "CommitMono Nerd Font Mono, Consolas, 'Courier New', 'monospace', monospace",
+    "workbench.settings.applyToAllProfiles": [
+        "editor.fontFamily"
+    ],
+    "editor.fontLigatures": true,
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredDarkColorTheme": "GitHub Dark Default",
+    "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
+    "workbench.preferredLightColorTheme": "GitHub Light Default",
+    "workbench.colorTheme": "GitHub Dark Default"
+}

@@ -1,0 +1,41 @@
+*.pyc
+
+Desktop.ini
+
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+Icon
+
+._*
+Thumbs.db
+
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+*.bak
+*.last-run
+
+*.crt
+*.user-ca-bundle
+*.merged-ca-bundle
+
+.SublimeREPLHistory/
+Package Control.cache/
+
+WakaTime.sublime-settings
+.vscode/tags
+Brewfile.lock.json
+private/

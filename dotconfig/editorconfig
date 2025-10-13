@@ -1,0 +1,35 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+tab_width = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[Makefile]
+indent_style = tab
+
+[*.go]
+indent_style = tab
+tab_width = 8
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.{yaml,yml}]
+indent_size = 2
+
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

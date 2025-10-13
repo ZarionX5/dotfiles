@@ -1,0 +1,3 @@
+[user]
+	email = ${GITLAB_USER_EMAIL:-blank.gitlab@empty.net}
+	name = ${GITLAB_USER_NAME:-blank}

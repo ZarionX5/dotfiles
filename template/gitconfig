@@ -1,0 +1,39 @@
+# [include]
+#   path = ~/.gitconfig
+
+[user]
+    email = ${GIT_USER_EMAIL:-blank@empty.net}
+    name = ${GIT_USER_NAME:-blank}
+
+[alias]
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  s = status -s
+  c = clone --recursive
+  sw = switch
+  ch = checkout
+  cm = commit
+  tags = tag -l
+  branches = branch --all
+  ba = branch --all
+  remotes = remote --verbose
+  whoami = config user.email
+
+[core]
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore
+
+[branch]
+	sort = -committerdate
+
+[color]
+	ui = auto
+
+[init]
+	defaultBranch = master
+
+
+[includeIf \"hasconfig:remote.*.url:git@github.com:*/**\"]
+  path = ~/.gitconfig-github
+
+[includeIf \"hasconfig:remote.*.url:git@gitlab.com:*/**\"]
+  path = ~/.gitconfig-gitlab

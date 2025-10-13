@@ -1,0 +1,56 @@
+# https://github.com/anishathalye/dotbot?tab=readme-ov-file#directives
+
+- defaults:
+    link:
+      relink: true
+    shell:
+      stderr: true
+      stdin: true
+    create:
+      mode: 0755
+
+- clean:
+    ~/:
+      force: true
+    ~/.config/:
+      recursive: true
+
+- create:
+    - ~/.config/
+    - ~/.dosbox/
+
+- shell:
+  -
+    command: "./bin/prepare-env.sh && ${EDITOR:-nano} pre-env.sh && ./bin/create-env.sh && ${EDITOR:-nano} env.sh"
+    stdin: true
+    stdout: true
+    description: Setting env vars
+
+  -
+    command: "${EDITOR:-nano} ./bin/install-pkg.sh && ./bin/install-pkg.sh > ../install-pkg.sh && ${EDITOR:-nano} ../install-pkg.sh"
+    stdin: true
+    stdout: true
+    description: Install packages
+
+  - [bash init.sh, Init configs]
+
+- link:
+    ~/.config/:
+      glob: true
+      create: true
+      force: true
+      relink: true
+      path: dotconfig/config/**
+    ~/.dosbox/:
+      glob: true
+      path: dotconfig/dosbox/*
+    ~/:
+      glob: true
+      force: true
+      relink: true
+      prefix: '.'
+      path: dotconfig/*
+      exclude: [ dotconfig/config, dotconfig/dosbox ]
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
