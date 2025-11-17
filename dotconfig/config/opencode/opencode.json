@@ -1,0 +1,189 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "theme": "zenburn",
+  "instructions": [
+    "~/.config/opencode/rules/*.md",
+    // "~/.config/opencode/rules/mcp-list.md",
+    // "~/.config/opencode/rules/prog-global-rules.md",
+    // "~/.config/opencode/rules/prog-local-rules.md",
+    // "~/.config/opencode/rules/user-rules.md",
+  ],
+  "mcp": {
+    "context7": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/context7"
+      ]
+    },
+    "sequential-thinking": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "gh_grep": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "code-index": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "uvx",
+        "code-index-mcp"
+      ]
+    }
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://192.168.10.174:11434/v1"
+      },
+      "models": {
+        "gpt-oss:20b": {
+          "name": "GPT-oss 20B"
+        },
+        "gpt-oss:20b-low": {
+          "id": "gpt-oss:20b",
+          "name": "GPT-oss 20B (low)",
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low",
+            "reasoningSummary": "auto",
+          },
+        },
+        "qwen3:4b-instruct": {
+          "name": "Qwen3 4B Instruct"
+        },
+        "qwen3:14b-q4_K_M": {
+          "name": "Qwen3 14B"
+        }
+      }
+    }
+  },
+  "model": "gpt-oss:20b",
+  "small_model": "qwen3:4b-instruct",
+  "tools": {
+    "edit": true,
+    "write": true,
+    "bash": true
+  },
+  "permission": {
+    "webfetch": "allow",
+    "edit": "ask",
+    "bash": {
+        "* --help": "allow",
+        "* --version": "allow",
+        "man *": "allow",
+        "pwd": "allow",
+        "ls *": "allow",
+        "which *": "allow",
+        "grep *": "allow",
+        "find *": "allow",
+        "cat *": "allow",
+        "git status *": "allow",
+        "git log *": "allow",
+        "git branch -a": "allow",
+        "git branch": "allow",
+        "git *": "ask",
+        "pip list": "allow",
+        "uv pip list": "allow",
+        "python --version": "allow",
+        "python3 --version": "allow",
+        "node -v": "allow",
+        "npm -v": "allow",
+        "npx -v": "allow",
+        "rm *": "ask",
+        "rm -rf /": "deny",
+        "rm -rf ~": "deny",
+      "*": "ask",
+    }
+  },
+  "agent": {
+    "plan": {
+      "mode": "primary",
+      "model": "gpt-oss:20b",
+      "description": "Планирование, описание чёткой последовательности действий",
+      "prompt": "{file:./prompts/plan.md}",
+      "tools": {
+        "context7": false,
+        "gh_grep": false,
+        "code-index": false,
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "analyze": {
+      "model": "gpt-oss:20b",
+      "temperature": 0.1,
+      "description": "Анализ требований, обсуждение с пользователем стратегий",
+      "prompt": "{file:./prompts/analyze.md}",
+      "tools": {
+        "context7": false,
+        "gh_grep": false,
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "build": {
+      "model": "gpt-oss:20b",
+      "temperature": 0.3,
+      "description": "Разработка (корпоративная)",
+      "prompt": "{file:./prompts/build.md}",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "fast-build": {
+      "model": "qwen3:4b-instruct",
+      "temperature": 0.5,
+      "description": "Разработка (MVP)",
+      "prompt": "{file:./prompts/fast-build.md}",
+      "tools": {
+        "webfetch": false,
+        "context7": false,
+        "gh_grep": false,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "brainstorm": {
+      "model": "gpt-oss:20b",
+      "temperature": 0.7,
+      "description": "Спонтанное обсуждение для генерации идей и решений проблем",
+      "prompt": "{file:./prompts/brainstorm.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "review": {
+      "mode": "subagent",
+      "model": "qwen3:14b-q4_K_M",
+      "description": "Проверяет код на наличие ошибок",
+      "prompt": "{file:./prompts/review.md}",
+      "tools": {
+        "write": false,
+        "edit": false
+      }
+    }
+  }
+}

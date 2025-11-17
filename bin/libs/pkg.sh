@@ -29,6 +29,10 @@ function cli_setting {
   echo "${INSTALL_CMD} ${cli_pkg[*]}"
 
   echo "curl -sS https://starship.rs/install.sh | sh"
+
+  echo "git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf"
+  echo "~/.fzf/install"
+  echo "rm -rf ~/.fzf"
 }
 
 function gui_setting {

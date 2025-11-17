@@ -12,3 +12,8 @@ end
 pyenv init - fish | source
 
 starship init fish | source
+
+set --universal nvm_default_version v22.20.0
+set --universal nvm_default_packages pnpm np
+
+fzf --fish | source

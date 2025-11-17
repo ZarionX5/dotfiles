@@ -1,3 +1,3 @@
 function n --wraps=node --description 'alias n node'
-    docker $argv
+    node $argv
 end

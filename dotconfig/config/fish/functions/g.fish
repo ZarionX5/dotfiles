@@ -1,3 +1,3 @@
 function g --wraps=git --description 'alias g git'
-    docker $argv
+    git $argv
 end

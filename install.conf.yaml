@@ -34,6 +34,8 @@
 
   - [bash init.sh, Init configs]
 
+  - [ mkdir -p ~/.config/Code | cp -ur ./dotconfig/config/Code/* ~/.config/Code/ | exit 0, VScode configuring]
+
 - link:
     ~/.config/:
       glob: true
@@ -41,6 +43,7 @@
       force: true
       relink: true
       path: dotconfig/config/**
+      exclude: [ dotconfig/config/Code/** ]
     ~/.dosbox/:
       glob: true
       path: dotconfig/dosbox/*
@@ -50,7 +53,7 @@
       relink: true
       prefix: '.'
       path: dotconfig/*
-      exclude: [ dotconfig/config, dotconfig/dosbox ]
+      exclude: [ dotconfig/config/Code/*, dotconfig/config, dotconfig/dosbox ]
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
