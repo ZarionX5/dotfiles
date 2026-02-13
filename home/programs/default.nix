@@ -20,6 +20,7 @@
     gnome-boxes
     nixos-icons
 
+    imagemagick
     dconf-editor
     file-roller
     gnome-calculator
