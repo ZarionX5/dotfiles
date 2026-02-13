@@ -2,18 +2,18 @@
   self,
   inputs,
   ...
-}: {  
-  flake.nixosConfigurations = let 
+}: {
+  flake.nixosConfigurations = let
     inherit (inputs.nixpkgs.lib) nixosSystem;
     mkSystem = { vars, modules }: nixosSystem {
-      specialArgs = { 
-        inherit self inputs vars; 
+      specialArgs = {
+        inherit self inputs vars;
       };
       modules = [
         {
           home-manager = {
-            extraSpecialArgs = { 
-              inherit self inputs vars; 
+            extraSpecialArgs = {
+              inherit self inputs vars;
             };
             backupFileExtension = ".hm-backup";
           };
@@ -48,8 +48,11 @@
         "${mod}/services/location.nix"
         "${mod}/services/dpi.nix"
         "${mod}/services/flatpak.nix"
+        "${mod}/services/mfp.nix"
 
         "${mod}/programs/gnome"
+
+        "${mod}/hardware/sane.nix"
 
         {
           home-manager.users."${vars.username}".imports = homeImports."laptop";

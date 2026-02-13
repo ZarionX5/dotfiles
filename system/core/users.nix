@@ -5,14 +5,16 @@
     shell = pkgs.zsh;
     extraGroups = [
       "adbusers"
-      "audio" 
+      "audio"
       "docker"
       "input"
       "libvirtd"
+      "lp"
       "networkmanager"
       "plugdev"
       "transmission"
       "video"
+      "scanner"
       "wheel"
       "kvm"
     ];
