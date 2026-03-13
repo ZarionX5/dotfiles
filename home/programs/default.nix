@@ -18,9 +18,15 @@
   home.packages = with pkgs; [
     telegram-desktop
     gnome-boxes
+    # nextcloud-client
+    zerotierone
+
+    bitwarden-desktop
+    bitwarden-cli
+    bitwarden-menu
+
     nixos-icons
 
-    imagemagick
     dconf-editor
     file-roller
     gnome-calculator

@@ -14,11 +14,12 @@
 
   opencodeEnv = pkgs.buildEnv {
     name = "opencode-env";
-    paths =
-      languages.packages
+    paths = [
+        pkgs.uv
+    ] ++ languages.packages
       ++ skills.packages;
     pathsToLink = [
-      "/bin" 
+      "/bin"
     ];
   };
 
@@ -40,7 +41,7 @@
     } ''
       mkdir -p $out/bin
       mkdir -p $out/share
-      
+
       makeWrapper ${opencodeInitScript} $out/bin/opencode \
         --prefix PATH : ${opencodeEnv}/bin \
         --set OPENCODE_LIBC ${pkgs.glibc}/lib/libc.so.6

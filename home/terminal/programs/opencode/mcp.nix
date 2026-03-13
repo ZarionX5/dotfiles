@@ -6,6 +6,12 @@
       url = "https://mcp.grep.app/";
       timeout = 10000;
     };
+    code-index = {
+      enabled = true;
+      type = "local";
+      command = ["uvx" "code-index-mcp"];
+      timeout = 10000;
+    };
     deepwiki = {
       enabled = true;
       type = "remote";

@@ -1,8 +1,29 @@
 {
   config = {
-    ollama = {
+    ollama-local = {
       npm = "@ai-sdk/openai-compatible";
       name = "Ollama (local)";
+      options = {
+        baseURL = "http://127.0.0.1:11434/v1";
+      };
+      models = {
+        "granite4:tiny-h" = {
+          name = "Granite4 7b";
+        };
+        "lfm2.5-thinking:latest" = {
+          name = "Lfm2.5 1.2b";
+        };
+        "qwen2.5-coder:14b" = {
+          name = "Qwen2.5 coder 14b";
+        };
+        "qwen2.5-coder:7b-instruct-q4_K_M" = {
+          name = "Qwen2.5 coder 7b";
+        };
+      };
+    };
+    ollama = {
+      npm = "@ai-sdk/openai-compatible";
+      name = "Ollama (remote)";
       options = {
         baseURL = "http://192.168.10.174:11434/v1";
       };

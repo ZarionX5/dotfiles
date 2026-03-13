@@ -1,4 +1,4 @@
-{lib, vars, ...}: {
+{lib, vars, pkgs, ...}: {
   imports = [
     ./time.nix
     ./security.nix
@@ -29,6 +29,18 @@
       "en_US.UTF-8/UTF-8"
     ] ++ (map (item: "${item}/UTF-8") lc-extra);
   };
+
+  environment.systemPackages = let
+    languages = vars.lc-extra;
+
+    getAspellDict = locale: pkgs.aspellDicts.${builtins.substring 0 2 locale};
+
+    getHunspellDict = locale: pkgs.hunspellDicts.${builtins.substring 0 5 locale};
+
+  in with pkgs; (map getAspellDict languages) ++ [
+
+    (hunspellWithDicts (map getHunspellDict languages))
+  ];
 
   console.keyMap = "la-latin1";
 

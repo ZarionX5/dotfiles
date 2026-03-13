@@ -13,7 +13,7 @@
     LESKEY = "${config.xdg.configHome}/less/lesskey";
     # XAUTHORITY = "${config.xdg.runtimeDir}/Xauthority";
 
-    EDITOR = "zeditor";
+    EDITOR = "code";
     DIRENV_LOG_FORMAT = "";
 
     NIX_AUTO_RUN = "1";

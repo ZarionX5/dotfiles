@@ -5,6 +5,9 @@
   ];
 
   home.packages = with pkgs; [
+    gimp2-with-plugins
+    imagemagick
+
     helvum
 
     amberol
