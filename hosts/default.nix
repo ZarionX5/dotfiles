@@ -49,6 +49,7 @@
         "${mod}/services/dpi.nix"
         "${mod}/services/flatpak.nix"
         "${mod}/services/mfp.nix"
+        "${mod}/services/zerotier.nix"
 
         "${mod}/programs/gnome"
 
