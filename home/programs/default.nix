@@ -19,7 +19,6 @@
     telegram-desktop
     gnome-boxes
     # nextcloud-client
-    zerotierone
 
     bitwarden-desktop
     bitwarden-cli
@@ -39,16 +38,19 @@
     zeal
   ];
 
-  services.flatpak = {
-    # remotes = lib.mkOptionDefault [{
-    #   name = "flathub";
-    #   location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-    # }];
-    update.auto.enable = false;
-    uninstallUnmanaged = false;
+  services = {
+    flatpak = {
+      # remotes = lib.mkOptionDefault [{
+      #   name = "flathub";
+      #   location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      # }];
+      update.auto.enable = false;
+      uninstallUnmanaged = false;
 
-    packages = [
-      "dev.ters.LocalTranslate"
-    ];
+      packages = [
+        "dev.ters.LocalTranslate"
+      ];
+    };
+    zerotierone.enable = true;
   };
 }
