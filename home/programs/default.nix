@@ -51,6 +51,5 @@
         "dev.ters.LocalTranslate"
       ];
     };
-    zerotierone.enable = true;
   };
 }
