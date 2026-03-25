@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   fonts = {
     packages = with pkgs; [
+      corefonts
       nerd-fonts.symbols-only
       material-symbols
 
