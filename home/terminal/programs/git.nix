@@ -10,6 +10,7 @@
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
 
     ignores = [
       "*~"
@@ -156,4 +157,8 @@
     enableGitIntegration = true;
     options.dark = true;
   };
+
+  home.packages = with pkgs; [
+    git-lfs
+  ];
 }
