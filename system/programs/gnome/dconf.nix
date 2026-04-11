@@ -70,6 +70,7 @@
             "appindicatorsupport@rgcjonas.gmail.com"
             "clipboard-indicator@tudmotu.com"
             "dash-to-dock@micxgx.gmail.com"
+            "gsconnect@andyholmes.github.io"
           ];
         };
         

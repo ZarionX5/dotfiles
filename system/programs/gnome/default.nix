@@ -35,6 +35,7 @@
     appindicator
     dash-to-dock
     clipboard-indicator
+    gsconnect
     (another-window-session-manager.overrideAttrs (oldAttrs: rec {
       version = "51";
       src = pkgs.fetchFromGitHub {

@@ -8,7 +8,7 @@
     ../../programs/games
 
     ../../services/ai/ollama.nix
-    ../../services/system/kdeconnect.nix
+    # ../../services/system/kdeconnect.nix
     ../../services/system/udiskie.nix
   
     # ../../terminal/emulators/foot.nix
