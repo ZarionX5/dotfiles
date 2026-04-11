@@ -67,6 +67,7 @@
 
     
     shellAliases = let 
+      hasTrash = lib.any (p: (lib.getName p) == "trash-cli") config.home.packages;
       hasFzf = config.programs.fzf.enable;
       hasBat = config.programs.bat.enable;
       hasWine = lib.elem "ru.linux_gaming.PortProton" (config.services.flatpak.packages or []);
@@ -82,6 +83,7 @@
     // lib.optionalAttrs hasFzf { 
       f = "bat"; 
     }
+    // lib.optionalAttrs hasTrash { rm = "trash-put"; }
     // lib.optionalAttrs hasBat { cat = "bat"; }
     // lib.optionalAttrs hasWine { wine = "flatpak run ru.linux_gaming.PortProton --launch"; };
 
