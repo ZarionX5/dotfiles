@@ -5,7 +5,7 @@
   services.zapret-discord-youtube = {
     enable = true;
     # https://github.com/kartavkun/zapret-discord-youtube/tree/main/configs
-    config = "general (FAKE_TLS_AUTO_ALT3)";
+    configName = "general (FAKE_TLS_AUTO_ALT3)";
     listGeneral = [ "youtube.com" "discord.com" ];
 
     listExclude = [ 
@@ -16,9 +16,6 @@
       "ya.ru"
       "nixos.org"
       "nix.org"
-      "github.com"
-      "gitlab.com"
-      "gitea.com" 
     ];
     
     ipsetAll = [ 
