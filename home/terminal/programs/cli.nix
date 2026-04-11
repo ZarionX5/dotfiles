@@ -16,6 +16,11 @@
     sshfs
 
     # utils
+    act
+    pre-commit
+    
+    yq
+    tree
     dust
     duf
     fd
