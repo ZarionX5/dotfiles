@@ -17,5 +17,6 @@
     DIRENV_LOG_FORMAT = "";
 
     NIX_AUTO_RUN = "1";
+    NIXPKGS_ALLOW_UNFREE = "1";
   };
 }
