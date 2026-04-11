@@ -6,6 +6,7 @@
     extraGroups = [
       "adbusers"
       "audio"
+      "dialout"
       "docker"
       "input"
       "libvirtd"
@@ -13,6 +14,7 @@
       "networkmanager"
       "plugdev"
       "transmission"
+      "tty"
       "video"
       "scanner"
       "wheel"
