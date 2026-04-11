@@ -22,6 +22,7 @@
         };
         "org/gnome/desktop/input-sources" = {
           show-all-sources = true;
+          per-window = true;
           sources = [
             (lib.gvariant.mkTuple ["xkb" "us"])
             (lib.gvariant.mkTuple ["xkb" "ru"]) 
