@@ -1,5 +1,4 @@
 alias b := build
-alias t := test
 alias c := clean
 alias fmt := formatting
 
@@ -12,10 +11,11 @@ build_laptop:
 
 dev:
 
-test:
+check:
+    find . -name "*.nix" -exec nixfmt --check {} +
 
 formatting:
     just --fmt
-    nixfmt *.nix
+    find . -name "*.nix" -exec nixfmt {} +
 
 clean:
