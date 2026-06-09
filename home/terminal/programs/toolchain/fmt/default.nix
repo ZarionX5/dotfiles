@@ -1,21 +1,23 @@
-{pkgs}: let
+{ pkgs }:
+let
   formatterBins = {
     ruff = "${pkgs.ruff}/bin/ruff";
 
     clang = "${pkgs.clang-tools}/bin/clang-format";
-    
+
     prettier = "${pkgs.prettier}/bin/prettier"; # html yaml markdown scss xml
-    biome = "${pkgs.biome}/bin/biome"; # css json js ts 
-    
+    biome = "${pkgs.biome}/bin/biome"; # css json js ts
+
     shfmt = "${pkgs.shfmt}/bin/shfmt";
-    
+
     nixfmt = "${pkgs.nixfmt}/bin/nixfmt";
 
     typstyle = "${pkgs.typstyle}/bin/typstyle";
-    
+
     taplo = "${pkgs.taplo}/bin/taplo";
   };
-in {
+in
+{
   packages = with pkgs; [
     # Python
     ruff
@@ -37,20 +39,60 @@ in {
   inherit formatterBins;
 
   formatterCmds = {
-    ruff = [ "${formatterBins.ruff}" "check" "--select" "I" "--fix" "&&" 
-             "${formatterBins.ruff}" "format" "--line-length" "150" ];
-    
-    clang = [ "${formatterBins.clang}" "--assume-filename"];
+    ruff = [
+      "${formatterBins.ruff}"
+      "check"
+      "--select"
+      "I"
+      "--fix"
+      "&&"
+      "${formatterBins.ruff}"
+      "format"
+      "--line-length"
+      "150"
+    ];
 
-    biome = [ "${formatterBins.biome}" "format" "--stdin-file-path" ];
-    prettier = [ "${formatterBins.prettier}" "--stdin-filepath" ];
+    clang = [
+      "${formatterBins.clang}"
+      "--assume-filename"
+    ];
 
-    shfmt = [ "${formatterBins.shfmt}" "-i" "2" ];
+    biome = [
+      "${formatterBins.biome}"
+      "format"
+      "--stdin-file-path"
+    ];
+    prettier = [
+      "${formatterBins.prettier}"
+      "--stdin-filepath"
+    ];
 
-    nixfmt = [ "${formatterBins.nixfmt}" "--indent" "2" "-w" "150"];
+    shfmt = [
+      "${formatterBins.shfmt}"
+      "-i"
+      "2"
+    ];
 
-    typstyle = [ "${formatterBins.typstyle}" "--indent-width" "2" "--line-width" "150"];
+    nixfmt = [
+      "${formatterBins.nixfmt}"
+      "--indent"
+      "2"
+      "-w"
+      "150"
+    ];
 
-    taplo = [ "${formatterBins.taplo}" "fmt" "-" ];
+    typstyle = [
+      "${formatterBins.typstyle}"
+      "--indent-width"
+      "2"
+      "--line-width"
+      "150"
+    ];
+
+    taplo = [
+      "${formatterBins.taplo}"
+      "fmt"
+      "-"
+    ];
   };
 }

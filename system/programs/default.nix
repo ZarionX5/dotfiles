@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}:{
+}:
+{
   imports = [
     ./fonts.nix
     ./home-manager.nix

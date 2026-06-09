@@ -18,7 +18,7 @@
     # utils
     act
     pre-commit
-    
+
     trash-cli
     yq
     tree

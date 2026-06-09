@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.dconf.profiles."${vars.username}".databases = [
     {
       # lockAll = true;
@@ -24,8 +25,14 @@
           show-all-sources = true;
           per-window = true;
           sources = [
-            (lib.gvariant.mkTuple ["xkb" "us"])
-            (lib.gvariant.mkTuple ["xkb" "ru"]) 
+            (lib.gvariant.mkTuple [
+              "xkb"
+              "us"
+            ])
+            (lib.gvariant.mkTuple [
+              "xkb"
+              "ru"
+            ])
           ];
         };
 
@@ -38,8 +45,8 @@
         };
 
         "org/gnome/shell/keybindings" = {
-          focus-active-notification = ["<Control><Super>n"];
-          toggle-message-tray = ["<Super>n"];
+          focus-active-notification = [ "<Control><Super>n" ];
+          toggle-message-tray = [ "<Super>n" ];
         };
 
         "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -49,12 +56,13 @@
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
           ];
         };
-        
+
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           name = "terminal";
-          command = let 
-            shell = "zsh";
-            in 
+          command =
+            let
+              shell = "zsh";
+            in
             "xdg-terminal-exec ${shell} -c \"fastfetch; exec ${shell}\" ";
           binding = "<Super>t";
         };
@@ -73,7 +81,7 @@
             "gsconnect@andyholmes.github.io"
           ];
         };
-        
+
         "org/gnome/shell/extensions/clipboard-indicator" = {
           move-item-first = true;
           strip-text = true;

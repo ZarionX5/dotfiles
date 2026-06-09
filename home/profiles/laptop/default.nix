@@ -10,7 +10,7 @@
     ../../services/ai/ollama.nix
     # ../../services/system/kdeconnect.nix
     ../../services/system/udiskie.nix
-  
+
     # ../../terminal/emulators/foot.nix
     ../../terminal/emulators/ghostty.nix
     # ../../terminal/emulators/zellij.nix

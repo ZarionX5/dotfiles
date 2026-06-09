@@ -24,7 +24,7 @@
     "net.ipv4.ip_forward" = 1;
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "cake";
-    
+
     "net.core.rmem_default" = 262144;
     "net.core.rmem_max" = 134217728;
     "net.core.wmem_default" = 262144;

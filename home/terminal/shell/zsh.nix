@@ -65,28 +65,29 @@
       }
     '';
 
-    
-    shellAliases = let 
-      # hasGhostty = lib.any (p: (lib.getName p) == "ghostty") config.home.packages;
-      hasTrash = lib.any (p: (lib.getName p) == "trash-cli") config.home.packages;
-      hasFzf = config.programs.fzf.enable;
-      hasBat = config.programs.bat.enable;
-      hasWine = lib.elem "ru.linux_gaming.PortProton" (config.services.flatpak.packages or []);
-    in {
-      grep = "grep --color";
-      ip = "ip --color";
-      ls = "ls --color=auto";
-      l = "eza -l";
-      la = "eza -la";
-      md = "mkdir -p";
-      ppc = "powerprofilesctl";
-    }
-    // lib.optionalAttrs hasFzf { 
-      f = "bat"; 
-    }
-    // lib.optionalAttrs hasTrash { rm = "trash-put"; }
-    // lib.optionalAttrs hasBat { cat = "bat"; }
-    // lib.optionalAttrs hasWine { wine = "flatpak run ru.linux_gaming.PortProton --launch"; };
+    shellAliases =
+      let
+        # hasGhostty = lib.any (p: (lib.getName p) == "ghostty") config.home.packages;
+        hasTrash = lib.any (p: (lib.getName p) == "trash-cli") config.home.packages;
+        hasFzf = config.programs.fzf.enable;
+        hasBat = config.programs.bat.enable;
+        hasWine = lib.elem "ru.linux_gaming.PortProton" (config.services.flatpak.packages or [ ]);
+      in
+      {
+        grep = "grep --color";
+        ip = "ip --color";
+        ls = "ls --color=auto";
+        l = "eza -l";
+        la = "eza -la";
+        md = "mkdir -p";
+        ppc = "powerprofilesctl";
+      }
+      // lib.optionalAttrs hasFzf {
+        f = "bat";
+      }
+      // lib.optionalAttrs hasTrash { rm = "trash-put"; }
+      // lib.optionalAttrs hasBat { cat = "bat"; }
+      // lib.optionalAttrs hasWine { wine = "flatpak run ru.linux_gaming.PortProton --launch"; };
 
     shellGlobalAliases = {
       eza = "eza --icons --git";

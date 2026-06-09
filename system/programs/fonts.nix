@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   fonts = {
     packages = with pkgs; [
       corefonts
@@ -8,7 +9,7 @@
       jetbrains-mono
       nerd-fonts.jetbrains-mono
       fira-code
-      
+
       inter
       roboto
       libertinus
@@ -23,7 +24,7 @@
     fontconfig = {
       enable = true;
       antialias = true;
-      
+
       hinting = {
         enable = true;
         autohint = false;
@@ -36,10 +37,22 @@
       };
 
       defaultFonts = {
-        monospace = [ "JetBrains Mono Nerd Font" "Symbols Nerd Font" "Noto Color Emoji" ];
-        sansSerif = [ "Inter" "Symbols Nerd Font" "Noto Color Emoji" ];
-        serif     = [ "Libertinus Serif" "Symbols Nerd Font" "Noto Color Emoji" ];
-        emoji     = [ "Noto Color Emoji" ];
+        monospace = [
+          "JetBrains Mono Nerd Font"
+          "Symbols Nerd Font"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Inter"
+          "Symbols Nerd Font"
+          "Noto Color Emoji"
+        ];
+        serif = [
+          "Libertinus Serif"
+          "Symbols Nerd Font"
+          "Noto Color Emoji"
+        ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
 

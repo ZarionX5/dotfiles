@@ -4,7 +4,8 @@ let
   username = "user";
   hostname = "nixos";
   gpg-default-key = "64F2DBDD0932A6CF";
-in {
+in
+{
   inherit timezone;
   inherit lc-extra;
 
@@ -15,13 +16,13 @@ in {
     email = "email@example.net";
     name = "user";
     signingKey = "${gpg-default-key}";
-    
+
     github = {
       email = "81365126+ZarionX5@users.noreply.github.com";
       name = "ZarionX5";
       signingKey = "${gpg-default-key}";
     };
-    
+
     gitlab = {
       email = "21143925-loek.n.v@users.noreply.gitlab.com";
       name = "loek.n.v";

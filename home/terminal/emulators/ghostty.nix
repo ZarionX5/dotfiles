@@ -2,18 +2,22 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   configFile = "ghostty/config";
-in {
+in
+{
   home.packages = with pkgs; [
     ghostty
   ];
 
   xdg.configFile."${configFile}".text = ''
-    ${lib.generators.toKeyValue {
+    ${lib.generators.toKeyValue
+      {
         mkKeyValue = k: v: "${k}=${v}";
         listsAsDuplicateKeys = true;
-      } {
+      }
+      {
         term = "xterm-256color";
         theme = "dark:Gruvbox Dark Hard,light:Gruvbox Light";
         scrollback-limit = "10000";
@@ -37,7 +41,8 @@ in {
         adjust-box-thickness = "100%";
         adjust-underline-thickness = "100%";
         adjust-underline-position = "110%";
-      }}
+      }
+    }
     ${lib.concatMapStringsSep "\n" (binding: "keybind=${binding}") [
       "ctrl+shift+i=inspector:toggle"
       "ctrl+shift+p=toggle_command_palette"

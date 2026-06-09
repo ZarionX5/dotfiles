@@ -1,11 +1,13 @@
 {
   pkgs,
   ...
-}: let
-  tools = import ./toolchain {inherit pkgs;};
-in {
+}:
+let
+  tools = import ./toolchain { inherit pkgs; };
+in
+{
   imports = [
-    
+
     ./opencode
     ./yazi
 
@@ -25,30 +27,33 @@ in {
     ./zoxide.nix
   ];
 
-  home.packages = with pkgs; [
-    texliveFull
-    typst
-    
-    rustup
+  home.packages =
+    with pkgs;
+    [
+      texliveFull
+      typst
 
-    go
-    gopls
-    delve
+      rustup
 
-    jdk
-    maven
+      go
+      gopls
+      delve
 
-    just
-    gnumake
+      jdk
+      maven
 
-    gcc
+      just
+      gnumake
 
-    bun
-    nodejs_24
+      gcc
 
-    uv
-    python314
-    
-    pkg-config
-  ] ++ tools.packages;
+      bun
+      nodejs_24
+
+      uv
+      python314
+
+      pkg-config
+    ]
+    ++ tools.packages;
 }

@@ -2,17 +2,22 @@
   inputs,
   pkgs,
   ...
-}:let
+}:
+let
   # package = inputs.helix.packages.${pkgs.stdenv.hostPlatform.system}.default;
   helix = pkgs.helix;
-  tools = import ../../../terminal/programs/toolchain {inherit pkgs;};
-in {
+  tools = import ../../../terminal/programs/toolchain { inherit pkgs; };
+in
+{
   programs.helix = {
     enable = true;
     package = helix;
-    extraPackages = with pkgs; [
-      shellcheck
-    ] ++ tools.packages;
+    extraPackages =
+      with pkgs;
+      [
+        shellcheck
+      ]
+      ++ tools.packages;
 
     settings = {
       theme = "gruvbox";
@@ -43,7 +48,12 @@ in {
           display-inlay-hints = true;
         };
         soft-wrap.enable = true;
-        gutters = ["diagnostics" "line-numbers" "spacer" "diff"];
+        gutters = [
+          "diagnostics"
+          "line-numbers"
+          "spacer"
+          "diff"
+        ];
         statusline.center = [ "position-percentage" ];
         true-color = true;
         trim-final-newlines = true;

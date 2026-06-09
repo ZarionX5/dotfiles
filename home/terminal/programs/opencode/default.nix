@@ -2,12 +2,16 @@
   pkgs,
   inputs,
   ...
-}: let
-  languages = import ./languages.nix {inherit pkgs;};
+}:
+let
+  languages = import ./languages.nix { inherit pkgs; };
   mcp = import ./mcp.nix;
   providers = import ./providers.nix;
   permissions = import ./permissions.nix;
-  skills = import ./skills.nix {inherit pkgs; inherit inputs;};
+  skills = import ./skills.nix {
+    inherit pkgs;
+    inherit inputs;
+  };
 
   # opencode = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
   opencode = pkgs.opencode;
@@ -15,9 +19,10 @@
   opencodeEnv = pkgs.buildEnv {
     name = "opencode-env";
     paths = [
-        pkgs.uv
-    ] ++ languages.packages
-      ++ skills.packages;
+      pkgs.uv
+    ]
+    ++ languages.packages
+    ++ skills.packages;
     pathsToLink = [
       "/bin"
     ];
@@ -36,22 +41,25 @@
   '';
 
   opencodeWrapped =
-    pkgs.runCommand "opencode-wrapped" {
-      buildInputs = [pkgs.makeWrapper];
-    } ''
-      mkdir -p $out/bin
-      mkdir -p $out/share
+    pkgs.runCommand "opencode-wrapped"
+      {
+        buildInputs = [ pkgs.makeWrapper ];
+      }
+      ''
+        mkdir -p $out/bin
+        mkdir -p $out/share
 
-      makeWrapper ${opencodeInitScript} $out/bin/opencode \
-        --prefix PATH : ${opencodeEnv}/bin \
-        --set OPENCODE_LIBC ${pkgs.glibc}/lib/libc.so.6
+        makeWrapper ${opencodeInitScript} $out/bin/opencode \
+          --prefix PATH : ${opencodeEnv}/bin \
+          --set OPENCODE_LIBC ${pkgs.glibc}/lib/libc.so.6
 
-      if [ -d "${opencode}/share" ]; then
-        cp -rs ${opencode}/share/* $out/share/
-      fi
-    '';
+        if [ -d "${opencode}/share" ]; then
+          cp -rs ${opencode}/share/* $out/share/
+        fi
+      '';
   configFile = "opencode/config.json";
-in {
+in
+{
   home.packages = [
     opencodeWrapped
   ];

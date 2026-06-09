@@ -20,136 +20,141 @@
       "node_modules"
     ];
 
-    settings = let 
-      hasGpg = (vars.git ? signingKey) && (vars.git.signingKey != "");
-    in {
-      core = {
-        editor = "${config.home.sessionVariables.EDITOR}";
-        pager = "${pkgs.delta}/bin/delta";
-        whitespace = "fix,-indent-with-non-tab,trailing-space,cr-at-eol";
-      };
-
-      init = {
-        defaultBranch = "main";
-      };
-      
-      user = {
-        email = "${vars.git.email}";
-        name = "${vars.git.name}";
-      } 
-      // lib.optionalAttrs hasGpg { 
-        signingKey = "${vars.git.signingKey}"; 
-      };
-
-      gpg = {
-        format = "openpgp";
-      };
-
-      "gpg-openpgp" = {
-        program = "${pkgs.gnupg}/bin/gpg";
-      };
-
-      tag = {
-        gpgSign = hasGpg;
-      };
-
-      commit = {
-        gpgSign = hasGpg;
-      };
-
-      merge ={
-        conflictstyle = "diff3";
-      };
-
-      diff ={
-        colorMoved = "default";
-      };
-
-      alias =
+    settings =
       let
-        log = "log --show-notes='*' --abbrev-commit --pretty=format:'%Cred%h %Cgreen(%aD)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>% %Creset' --graph";
+        hasGpg = (vars.git ? signingKey) && (vars.git.signingKey != "");
       in
       {
-        a = "add --patch";
-        ad = "add";
+        core = {
+          editor = "${config.home.sessionVariables.EDITOR}";
+          pager = "${pkgs.delta}/bin/delta";
+          whitespace = "fix,-indent-with-non-tab,trailing-space,cr-at-eol";
+        };
 
-        b = "branch";
-        ba = "branch -a";
-        bd = "branch --delete";
-        bdd = "branch -D";
+        init = {
+          defaultBranch = "main";
+        };
 
-        c = "commit";
-        ca = "commit --amend";
-        cm = "commit --message";
+        user = {
+          email = "${vars.git.email}";
+          name = "${vars.git.name}";
+        }
+        // lib.optionalAttrs hasGpg {
+          signingKey = "${vars.git.signingKey}";
+        };
 
-        co = "checkout";
-        cb = "checkout -b";
-        pc = "checkout --patch";
+        gpg = {
+          format = "openpgp";
+        };
 
-        cl = "clone";
+        "gpg-openpgp" = {
+          program = "${pkgs.gnupg}/bin/gpg";
+        };
 
-        d = "diff";
-        ds = "diff --staged";
+        tag = {
+          gpgSign = hasGpg;
+        };
 
-        h = "show";
-        h1 = "show HEAD^";
-        h2 = "show HEAD^^";
-        h3 = "show HEAD^^^";
-        h4 = "show HEAD^^^^";
-        h5 = "show HEAD^^^^^";
+        commit = {
+          gpgSign = hasGpg;
+        };
 
-        p = "push";
-        pf = "push --force-with-lease";
+        merge = {
+          conflictstyle = "diff3";
+        };
 
-        pl = "pull";
+        diff = {
+          colorMoved = "default";
+        };
 
-        l = log;
-        lp = "${log} --patch";
-        la = "${log} --all";
+        alias =
+          let
+            log = "log --show-notes='*' --abbrev-commit --pretty=format:'%Cred%h %Cgreen(%aD)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>% %Creset' --graph";
+          in
+          {
+            a = "add --patch";
+            ad = "add";
 
-        r = "rebase";
-        ra = "rebase --abort";
-        rc = "rebase --continue";
-        ri = "rebase --interactive";
+            b = "branch";
+            ba = "branch -a";
+            bd = "branch --delete";
+            bdd = "branch -D";
 
-        rs = "reset";
-        rsh = "reset --hard";
+            c = "commit";
+            ca = "commit --amend";
+            cm = "commit --message";
 
-        s = "status --short --branch";
-        ss = "status";
+            co = "checkout";
+            cb = "checkout -b";
+            pc = "checkout --patch";
 
-        st = "stash";
-        stc = "stash clear";
-        sth = "stash show --patch";
-        stl = "stash list";
-        stp = "stash pop";
+            cl = "clone";
 
-        forgor = "commit --amend --no-edit";
-        oops = "checkout --";
+            d = "diff";
+            ds = "diff --staged";
+
+            h = "show";
+            h1 = "show HEAD^";
+            h2 = "show HEAD^^";
+            h3 = "show HEAD^^^";
+            h4 = "show HEAD^^^^";
+            h5 = "show HEAD^^^^^";
+
+            p = "push";
+            pf = "push --force-with-lease";
+
+            pl = "pull";
+
+            l = log;
+            lp = "${log} --patch";
+            la = "${log} --all";
+
+            r = "rebase";
+            ra = "rebase --abort";
+            rc = "rebase --continue";
+            ri = "rebase --interactive";
+
+            rs = "reset";
+            rsh = "reset --hard";
+
+            s = "status --short --branch";
+            ss = "status";
+
+            st = "stash";
+            stc = "stash clear";
+            sth = "stash show --patch";
+            stl = "stash list";
+            stp = "stash pop";
+
+            forgor = "commit --amend --no-edit";
+            oops = "checkout --";
+          };
       };
-    };
-    includes = 
-    lib.optionals (vars ? git && vars.git ? github) [{
-        condition = "hasconfig:remote.*.url:git@github.com:*/**";
-        contents = {
-          user = {
-            email = vars.git.github.email;
-            name = vars.git.github.name;
-            signingKey = vars.git.github.signingKey;
+    includes =
+      lib.optionals (vars ? git && vars.git ? github) [
+        {
+          condition = "hasconfig:remote.*.url:git@github.com:*/**";
+          contents = {
+            user = {
+              email = vars.git.github.email;
+              name = vars.git.github.name;
+              signingKey = vars.git.github.signingKey;
+            };
           };
-        };
-      }
-    ] ++ lib.optionals (vars ? git && vars.git ? gitlab) [{
-        condition = "hasconfig:remote.*.url:git@gitlab.com:*/**";
-        contents = {
-          user = {
-            email = vars.git.gitlab.email;
-            name = vars.git.gitlab.name;
-            signingKey = vars.git.gitlab.signingKey;
+        }
+      ]
+      ++ lib.optionals (vars ? git && vars.git ? gitlab) [
+        {
+          condition = "hasconfig:remote.*.url:git@gitlab.com:*/**";
+          contents = {
+            user = {
+              email = vars.git.gitlab.email;
+              name = vars.git.gitlab.name;
+              signingKey = vars.git.gitlab.signingKey;
+            };
           };
-        };
-      }
-    ];
+        }
+      ];
   };
 
   programs.delta = {

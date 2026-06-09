@@ -1,4 +1,10 @@
-{lib, vars, pkgs, ...}: {
+{
+  lib,
+  vars,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./time.nix
     ./security.nix
@@ -9,38 +15,45 @@
 
   documentation.dev.enable = true;
 
-  i18n = let
-    lc-extra = vars.lc-extra;
-    extraLocale = builtins.head vars.lc-extra;
-  in {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "${extraLocale}";
-      LC_IDENTIFICATION = "${extraLocale}";
-      LC_MEASUREMENT = "${extraLocale}";
-      LC_MONETARY = "${extraLocale}";
-      LC_NAME = "${extraLocale}";
-      LC_NUMERIC = "${extraLocale}";
-      LC_PAPER = "${extraLocale}";
-      LC_TELEPHONE = "${extraLocale}";
-      LC_TIME = "${extraLocale}";
+  i18n =
+    let
+      lc-extra = vars.lc-extra;
+      extraLocale = builtins.head vars.lc-extra;
+    in
+    {
+      defaultLocale = "en_US.UTF-8";
+      extraLocaleSettings = {
+        LC_ADDRESS = "${extraLocale}";
+        LC_IDENTIFICATION = "${extraLocale}";
+        LC_MEASUREMENT = "${extraLocale}";
+        LC_MONETARY = "${extraLocale}";
+        LC_NAME = "${extraLocale}";
+        LC_NUMERIC = "${extraLocale}";
+        LC_PAPER = "${extraLocale}";
+        LC_TELEPHONE = "${extraLocale}";
+        LC_TIME = "${extraLocale}";
+      };
+      supportedLocales = [
+        "en_US.UTF-8/UTF-8"
+      ]
+      ++ (map (item: "${item}/UTF-8") lc-extra);
     };
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-    ] ++ (map (item: "${item}/UTF-8") lc-extra);
-  };
 
-  environment.systemPackages = let
-    languages = vars.lc-extra;
+  environment.systemPackages =
+    let
+      languages = vars.lc-extra;
 
-    getAspellDict = locale: pkgs.aspellDicts.${builtins.substring 0 2 locale};
+      getAspellDict = locale: pkgs.aspellDicts.${builtins.substring 0 2 locale};
 
-    getHunspellDict = locale: pkgs.hunspellDicts.${builtins.substring 0 5 locale};
+      getHunspellDict = locale: pkgs.hunspellDicts.${builtins.substring 0 5 locale};
 
-  in with pkgs; (map getAspellDict languages) ++ [
+    in
+    with pkgs;
+    (map getAspellDict languages)
+    ++ [
 
-    (hunspellWithDicts (map getHunspellDict languages))
-  ];
+      (hunspellWithDicts (map getHunspellDict languages))
+    ];
 
   console.keyMap = "la-latin1";
 

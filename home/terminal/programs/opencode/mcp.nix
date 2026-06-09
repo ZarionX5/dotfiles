@@ -9,7 +9,10 @@
     code-index = {
       enabled = true;
       type = "local";
-      command = ["uvx" "code-index-mcp"];
+      command = [
+        "uvx"
+        "code-index-mcp"
+      ];
       timeout = 10000;
     };
     deepwiki = {

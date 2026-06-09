@@ -1,7 +1,7 @@
 {
   boot.binfmt = {
     preferStaticEmulators = true;
-    
+
     emulatedSystems = [
       "armv7l-linux"
       "aarch64-linux"

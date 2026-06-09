@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ./browsers/google-chrome.nix
@@ -32,7 +33,7 @@
     gnome-control-center
     gnome-text-editor
     nautilus
-    (papers.override {supportNautilus = true;})
+    (papers.override { supportNautilus = true; })
 
     openvpn
     zeal

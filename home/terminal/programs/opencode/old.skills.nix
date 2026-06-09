@@ -1,16 +1,23 @@
-{pkgs}: let
-  fetchSkill = {
-    name,
-    owner,
-    repo,
-    rev,
-    path,
-    hash,
-  }:
+{ pkgs }:
+let
+  fetchSkill =
+    {
+      name,
+      owner,
+      repo,
+      rev,
+      path,
+      hash,
+    }:
     pkgs.stdenv.mkDerivation {
       name = "opencode-skill-${name}";
       src = pkgs.fetchFromGitHub {
-        inherit owner repo rev hash;
+        inherit
+          owner
+          repo
+          rev
+          hash
+          ;
       };
 
       installPhase = ''
@@ -19,18 +26,24 @@
       '';
     };
 
-  fetchSkillDir = {
-    name,
-    owner,
-    repo,
-    rev,
-    basePath,
-    hash,
-  }:
+  fetchSkillDir =
+    {
+      name,
+      owner,
+      repo,
+      rev,
+      basePath,
+      hash,
+    }:
     pkgs.stdenv.mkDerivation {
       name = "opencode-skill-${name}";
       src = pkgs.fetchFromGitHub {
-        inherit owner repo rev hash;
+        inherit
+          owner
+          repo
+          rev
+          hash
+          ;
       };
 
       installPhase = ''
@@ -104,16 +117,18 @@
     };
   };
 
-  allSkills = pkgs.runCommand "opencode-skills" {} ''
+  allSkills = pkgs.runCommand "opencode-skills" { } ''
     mkdir -p $out/skill
 
-    ${pkgs.lib.concatStringsSep "\n" (pkgs.lib.mapAttrsToList (name: skill: ''
+    ${pkgs.lib.concatStringsSep "\n" (
+      pkgs.lib.mapAttrsToList (name: skill: ''
         mkdir -p $out/skill/${name}
         cp -r ${skill}/* $out/skill/${name}/
-      '')
-      skills)}
+      '') skills
+    )}
   '';
-in {
-  packages = [];
+in
+{
+  packages = [ ];
   skillsSource = allSkills;
 }

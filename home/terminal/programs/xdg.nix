@@ -63,13 +63,13 @@ let
       "text/plain" = editor;
       "text/markdown" = editor;
       "inode/directory" = [ "yazi" ];
-      "application/zip" = ["org.gnome.FileRoller.desktop"];
-      "application/x-7z-compressed" = ["org.gnome.FileRoller.desktop"];
-      "application/x-rar-compressed" = ["org.gnome.FileRoller.desktop"];
-      "application/x-tar" = ["org.gnome.FileRoller.desktop"];
-      "application/gzip" = ["org.gnome.FileRoller.desktop"];
+      "application/zip" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-7z-compressed" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-rar-compressed" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
+      "application/gzip" = [ "org.gnome.FileRoller.desktop" ];
       "x-scheme-handler/magnet" = [ "transmission-gtk" ];
-      "x-scheme-handler/chrome" = ["google-chrome.desktop"];
+      "x-scheme-handler/chrome" = [ "google-chrome.desktop" ];
       "x-scheme-handler/tg" = [ "org.telegram.desktop" ];
       "x-scheme-handler/tonsite" = [ "org.telegram.desktop" ];
     }

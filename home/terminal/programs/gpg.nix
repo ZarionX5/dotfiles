@@ -3,7 +3,8 @@
   pkgs,
   vars,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     pinentry-gnome3
   ];
@@ -18,7 +19,7 @@
     enableZshIntegration = true;
     # pinentryPackage = pkgs.pinentry-gnome3;
     pinentry.package = pkgs.pinentry-gnome3;
-    
+
     extraConfig = ''
       grab
     '';

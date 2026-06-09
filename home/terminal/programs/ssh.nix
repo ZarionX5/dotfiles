@@ -14,7 +14,7 @@
           controlMaster = "auto";
           controlPath = "~/.ssh/master-%r@%h:%p";
           controlPersist = "4h";
-          
+
           dynamicForwards = [ ];
           extraOptions = { };
           forwardAgent = false;
@@ -29,9 +29,13 @@
           serverAliveInterval = 60;
           serverAliveCountMax = 3;
           setEnv = {
-            TERM="xterm-256color";
+            TERM = "xterm-256color";
           };
-          sendEnv = [ "COLORTERM" "TERM_PROGRAM" "TERM_PROGRAM_VERSION" ];
+          sendEnv = [
+            "COLORTERM"
+            "TERM_PROGRAM"
+            "TERM_PROGRAM_VERSION"
+          ];
           userKnownHostsFile = "~/.ssh/known_hosts";
         };
       };

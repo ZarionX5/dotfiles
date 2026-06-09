@@ -9,7 +9,7 @@
         "--expose-wayland"
       ];
     };
-  
+
     # steam = {
     #   enable = true;
 

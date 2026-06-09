@@ -2,12 +2,13 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     bootspec.enable = true;
 
     initrd.systemd.enable = true;
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
 
     kernelPackages = pkgs.linuxPackages_latest;
 
@@ -36,5 +37,5 @@
       TMPDIR = "/var/tmp";
     };
   };
-  environment.systemPackages = [config.boot.kernelPackages.cpupower];
+  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
 }

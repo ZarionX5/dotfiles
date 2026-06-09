@@ -1,4 +1,5 @@
-{vars, ...}: {
+{ vars, ... }:
+{
   environment.variables.NH_FLAKE = "/home/${vars.username}/.dotfiles";
   programs.nh = {
     enable = true;

@@ -1,50 +1,76 @@
-{pkgs}: let
-  tools = import ../toolchain {inherit pkgs;};
+{ pkgs }:
+let
+  tools = import ../toolchain { inherit pkgs; };
   formatterCmds = tools.formatterCmds;
   lspCmds = tools.lspCmds;
-in {
-  packages = with pkgs; [
-  ] 
-  ++ tools.packages;
+in
+{
+  packages =
+    with pkgs;
+    [
+    ]
+    ++ tools.packages;
 
   formatter = {
     ruff = {
       command = formatterCmds.ruff;
       extensions = [ "py" ];
     };
-    
+
     clang = {
       command = formatterCmds.clang;
-      extensions = [ "h" "hpp" "c" "cpp" ];
+      extensions = [
+        "h"
+        "hpp"
+        "c"
+        "cpp"
+      ];
     };
 
     biome = {
       command = formatterCmds.biome;
-      extensions = ["js" "ts" "json" "jsx" "tsx" "css" ];
+      extensions = [
+        "js"
+        "ts"
+        "json"
+        "jsx"
+        "tsx"
+        "css"
+      ];
     };
     prettier = {
       command = formatterCmds.prettier;
-      extensions = ["html" "scss" "yaml" "md" "xml"];
+      extensions = [
+        "html"
+        "scss"
+        "yaml"
+        "md"
+        "xml"
+      ];
     };
 
     shfmt = {
       command = formatterCmds.shfmt;
-      extensions = ["sh" "bash" "zsh"];
+      extensions = [
+        "sh"
+        "bash"
+        "zsh"
+      ];
     };
 
     nixfmt = {
       command = formatterCmds.nixfmt;
-      extensions = ["nix"];
+      extensions = [ "nix" ];
     };
 
     typstyle = {
       command = formatterCmds.typstyle;
-      extensions = ["typ"];
+      extensions = [ "typ" ];
     };
 
     taplo = {
       command = formatterCmds.taplo;
-      extensions = ["toml"];
+      extensions = [ "toml" ];
     };
   };
 
@@ -70,10 +96,15 @@ in {
         };
       };
     };
-    
-    clangd  = {
+
+    clangd = {
       command = lspCmds.clangd;
-      extensions = [ "h" "hpp" "c" "cpp" ];
+      extensions = [
+        "h"
+        "hpp"
+        "c"
+        "cpp"
+      ];
     };
 
     vscode-css-lsp = {
@@ -92,14 +123,25 @@ in {
       command = lspCmds.typescript-lsp;
       extensions = [ "ts" ];
     };
-    biome  = {
+    biome = {
       command = lspCmds.biome;
-      extensions = [ "js" "ts" "json" "jsx" "tsx" "css"];
+      extensions = [
+        "js"
+        "ts"
+        "json"
+        "jsx"
+        "tsx"
+        "css"
+      ];
     };
 
     bash-lsp = {
       command = lspCmds.bash-lsp;
-      extensions = [ "sh" "bash" "zsh" ];
+      extensions = [
+        "sh"
+        "bash"
+        "zsh"
+      ];
     };
 
     nil = {

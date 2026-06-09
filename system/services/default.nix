@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   services = {
     irqbalance.enable = true;
     thermald.enable = true;

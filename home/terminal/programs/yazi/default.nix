@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
     yazi
