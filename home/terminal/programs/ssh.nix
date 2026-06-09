@@ -10,9 +10,11 @@
           certificateFile = [ ];
           checkHostIP = true;
           compression = false;
-          controlMaster = "no";
-          controlPath = "~/.ssh/master-%r@%n:%p";
-          controlPersist = "no";
+
+          controlMaster = "auto";
+          controlPath = "~/.ssh/master-%r@%h:%p";
+          controlPersist = "4h";
+          
           dynamicForwards = [ ];
           extraOptions = { };
           forwardAgent = false;
