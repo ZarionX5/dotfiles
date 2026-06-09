@@ -1,31 +1,53 @@
 {
   description = "NixOS Flake";
 
-  outputs = inputs:
-  inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-    systems = [ "x86_64-linux" ];
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
-    imports = [ ./hosts ];
+      imports = [ ./hosts ];
 
-    perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-      devShells = {
-        default = pkgs.mkShell {
-          packages = [pkgs.git];
-          name = "nixos-dots";
-          env.DIRENV_LOG_FORMAT = "";
+      perSystem =
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        let
+          dev-pkgs = with pkgs; [
+            bash
+
+            git
+            git-lfs
+            act
+
+            just
+            editorconfig-checker
+            pre-commit
+
+            nh
+            nixfmt
+          ];
+        in
+        {
+          devShells = {
+            default = pkgs.mkShell {
+              packages = [
+                pkgs.git
+              ]
+              ++ dev-pkgs;
+              name = "nixos-dots";
+              env.DIRENV_LOG_FORMAT = "";
+            };
+          };
         };
-      };
-    };
 
-  };
+    };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -35,7 +57,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nix-index-db = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,9 +66,9 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/"; # ?ref=latest
 
     # helix.url = "github:helix-editor/helix";
-    
+
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
-    
+
     # opencode = {
     #   url = "github:anomalyco/opencode/v1.1.48";
     #   inputs.nixpkgs.follows = "nixpkgs";
