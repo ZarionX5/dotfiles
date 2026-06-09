@@ -14,6 +14,7 @@ in {
         mkKeyValue = k: v: "${k}=${v}";
         listsAsDuplicateKeys = true;
       } {
+        term = "xterm-256color";
         theme = "dark:Gruvbox Dark Hard,light:Gruvbox Light";
         scrollback-limit = "10000";
         font-family = "JetBrains Mono Nerd Font";

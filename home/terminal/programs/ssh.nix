@@ -24,10 +24,12 @@
           identityFile = [ ];
           localForwards = [ ];
           remoteForwards = [ ];
-          sendEnv = [ ];
           serverAliveInterval = 60;
           serverAliveCountMax = 3;
-          setEnv = { };
+          setEnv = {
+            TERM="xterm-256color";
+          };
+          sendEnv = [ "COLORTERM" "TERM_PROGRAM" "TERM_PROGRAM_VERSION" ];
           userKnownHostsFile = "~/.ssh/known_hosts";
         };
       };

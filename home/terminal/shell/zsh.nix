@@ -67,6 +67,7 @@
 
     
     shellAliases = let 
+      # hasGhostty = lib.any (p: (lib.getName p) == "ghostty") config.home.packages;
       hasTrash = lib.any (p: (lib.getName p) == "trash-cli") config.home.packages;
       hasFzf = config.programs.fzf.enable;
       hasBat = config.programs.bat.enable;
