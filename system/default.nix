@@ -2,6 +2,7 @@ let
   desktop = [
     ./core
     ./core/boot.nix
+    ./core/binfmt.nix
 
     ./hardware/fwupd.nix
     ./hardware/graphics.nix
